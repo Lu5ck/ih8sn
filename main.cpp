@@ -215,6 +215,7 @@ int main(int argc, char *argv[]) {
       config.find("BUILD_SECURITY_PATCH_DATE");
   const auto build_tags = config.find("BUILD_TAGS");
   const auto build_type = config.find("BUILD_TYPE");
+  const auto build_version_incremental = config.find("BUILD_VERSION_INCREMENTAL");
   const auto build_version_release = config.find("BUILD_VERSION_RELEASE");
   const auto build_version_release_or_codename =
       config.find("BUILD_VERSION_RELEASE_OR_CODENAME");
@@ -261,6 +262,11 @@ int main(int argc, char *argv[]) {
       property_override(
           "ro.build.description",
           getFormattedDescription(build_fingerprint->second).c_str());
+    }
+
+    if (build_version_release != config.end()) {
+      property_override(property_list("ro.", "build.version.incremental"),
+                        build_id->second.c_str());
     }
 
     if (debuggable != config.end()) {
