@@ -235,16 +235,18 @@ int main(int argc, char *argv[]) {
       property_override(property_list("ro.", "build.fingerprint"),
                         build_fingerprint->second.c_str());
     } else {
+      std::string concatenated_string = std::string(product_brand->second.c_str()) + "/" +
+                                        std::string(product_name->second.c_str()) + "/" +
+                                        std::string(product_device->second.c_str()) + ":" +
+                                        std::string(product_brand->second.c_str()) + "/" +
+                                        std::string(build_version_release->second.c_str()) + "/" +
+                                        std::string(build_id->second.c_str()) + "/" +
+                                        std::string(build_version_incremental->second.c_str()) + ":" +
+                                        std::string(build_type->second.c_str()) + "/" +
+                                        std::string(build_tags->second.c_str());
+
       property_override(property_list("ro.", "build.fingerprint"),
-                        product_brand->second.c_str() + "/" + 
-                        product_name->second.c_str() + "/" + 
-                        product_device->second.c_str() + ":" + 
-                        product_brand->second.c_str() + "/" + 
-                        build_version_release->second.c_str() + "/" + 
-                        build_id->second.c_str() + "/" + 
-                        build_version_incremental->second.c_str() + ":" +
-                        build_type->second.c_str() + "/" +
-                        build_tags->second.c_str());
+                        concatenated_string.c_str());
     }
 
     if (build_id != config.end()) {
