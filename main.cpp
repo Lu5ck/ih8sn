@@ -238,7 +238,6 @@ int main(int argc, char *argv[]) {
       std::string concatenated_string = std::string(product_brand->second.c_str()) + "/" +
                                         std::string(product_name->second.c_str()) + "/" +
                                         std::string(product_device->second.c_str()) + ":" +
-                                        std::string(product_brand->second.c_str()) + "/" +
                                         std::string(build_version_release->second.c_str()) + "/" +
                                         std::string(build_id->second.c_str()) + "/" +
                                         std::string(build_version_incremental->second.c_str()) + ":" +
